@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OneShot — System Workspace</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="identity"><span class="mark" aria-hidden="true">◼</span><span>OneShot</span><span class="header-caption">System workspace</span></div>
+      <div class="header-actions">
+        <button id="agent-toggle" type="button" class="secondary agent-banner" aria-controls="agent-drawer" aria-expanded="false">Agent</button>
+        <span id="connection-state" class="state" role="status">Connecting to System…</span>
+        <button id="menu-toggle" class="secondary" type="button" aria-controls="workspace-menu" aria-expanded="false">Menu</button>
+      </div>
+    </header>
+
+    <nav id="workspace-menu" class="workspace-menu" hidden aria-label="Workspace menu">
+      <button id="settings-toggle" type="button" class="plain" aria-controls="settings-panel" aria-expanded="false">Settings</button>
+      <button id="logout-button" type="button" class="plain">Sign out</button>
+    </nav>
+
+    <aside id="settings-panel" class="settings-panel" hidden aria-label="Workspace settings">
+      <div class="panel-title"><h2>Settings</h2><button type="button" id="settings-close" class="icon-button" aria-label="Close settings">×</button></div>
+      <section aria-label="Agent integrations" class="settings-section">
+        <h3>Integrations</h3>
+        <p>Install Agents here when an integration service is available. System processing does not depend on Agent installation.</p>
+        <div id="integration-inventory" role="status" aria-live="polite">Checking server configuration…</div>
+        <p class="small">Provider configuration belongs to the server environment. Keys never enter the browser.</p>
+      </section>
+    </aside>
+
+    <section id="login-view" class="login-view" aria-label="Operator sign in" hidden>
+      <form id="login-form" class="login-card">
+        <p class="eyebrow">OneShot System</p>
+        <h1>Sign in</h1>
+        <p class="small">Use the operator browser password configured on the server. Do not enter provider API keys here.</p>
+        <label for="browser-password">Operator password</label>
+        <input id="browser-password" type="password" autocomplete="current-password" minlength="16" required />
+        <button type="submit" id="login-submit">Sign in</button>
+        <p id="login-error" class="small" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+    <div id="workspace" class="workspace" hidden>
+      <aside id="agent-drawer" class="agent-drawer" hidden aria-label="Optional Agent Chat">
+        <div class="agent-heading">
+          <div class="agent-title"><p class="eyebrow">[1] Optional</p><h2>Agent Chat</h2></div>
+          <label for="agent-selector">Agent</label>
+          <select id="agent-selector" disabled aria-describedby="agent-selection-help">
+            <option value="">No configured Agents</option>
+          </select>
+          <p id="agent-selection-help" class="small">Optional Agent providers are configured on the server. Selecting a provider activates Agent Chat and makes System Chat read-only until the Agent is deactivated.</p>
+          <button id="agent-deactivate" type="button" class="secondary" disabled>Deactivate Agent · return to System</button>
+        </div>
+        <div id="agent-messages" class="messages agent-messages" aria-live="polite"><p class="empty">No Agent integration configured. System Chat remains independent.</p></div>
+        <form id="agent-form" class="agent-compose">
+          <label for="agent-input" class="visually-hidden">Agent message</label>
+          <textarea id="agent-input" rows="3" placeholder="Message the configured Agent…" disabled></textarea>
+          <button id="agent-send" type="submit" disabled>Send to Agent</button>
+          <p id="agent-status" role="status" aria-live="polite" class="small">No provider connected.</p>
+        </form>
+      </aside>
+
+      <main class="system-panel" aria-label="System Chat">
+        <div class="panel-heading"><div><p class="eyebrow">Primary</p><h1>System Chat</h1></div><span id="session-state" class="meta">Loading</span></div>
+        <div id="system-messages" class="messages" aria-live="polite"><p class="empty">No messages loaded.</p></div>
+        <form id="system-form" class="system-compose">
+          <label for="system-input" class="visually-hidden">System message</label>
+          <textarea id="system-input" rows="3" placeholder="Message the System…" required></textarea>
+          <div class="compose-row"><label class="presend-opt"><input id="presend-enabled" type="checkbox" /> Review context before sending</label><button id="send-system" type="submit">Send</button></div>
+          <p class="small">Optional review uses explicit headings only. Sending a message does not launch processing.</p>
+        </form>
+      </main>
+
+      <section class="source-panel" aria-label="Attachments and Sources">
+        <div class="panel-heading"><div><p class="eyebrow">Source access</p><h2>Attachments</h2></div>
+          <button id="attach-toggle" class="icon-button" type="button" title="Attach source" aria-label="Attach source" aria-controls="attach-menu" aria-expanded="false">📎</button></div>
+        <div id="attach-menu" class="attach-menu" hidden>
+          <button id="paste-toggle" type="button" class="plain">Paste text</button>
+          <button id="file-toggle" type="button" class="plain">Select text file</button>
+          <button id="reference-toggle" type="button" class="plain">Reference URL without fetching</button>
+          <input id="file-input" hidden type="file" accept=".txt,.md,.py,.ts,.tsx,.js,.jsx,.json,.toml,.yaml,.yml,.csv,.html,.css,.xml,.log,.png,.jpg,.jpeg,.webp" />
+        </div>
+        <form id="paste-form" class="paste-form" hidden>
+          <label for="paste-name">Source name</label><input id="paste-name" value="source.md" maxlength="240" required />
+          <label for="paste-content">Source text</label><textarea id="paste-content" rows="5" required></textarea>
+          <div class="inline-actions"><button id="paste-cancel" class="secondary" type="button">Cancel</button><button type="submit">Attach</button></div>
+        </form>
+        <form id="reference-form" class="paste-form" hidden>
+          <label for="reference-name">Reference name</label><input id="reference-name" required maxlength="240" />
+          <label for="reference-url">External URL</label><input id="reference-url" type="url" required placeholder="https://example.org/reference" />
+          <p class="small">A reference records a URL. It is not fetched or read until a supported Researcher action exists.</p>
+          <div class="inline-actions"><button id="reference-cancel" class="secondary" type="button">Cancel</button><button type="submit">Record reference</button></div>
+        </form>
+        <div class="scope-heading"><span>Selected scope</span><span id="source-count" class="meta">0 of 0</span></div>
+        <div id="source-items" class="source-items"><p class="empty">No sources attached.</p></div>
+        <section class="source-library" aria-label="Source library">
+          <button id="library-toggle" type="button" class="secondary" aria-expanded="false">Add existing source from library</button>
+          <div id="library-items" hidden><p class="small">Sources previously removed from scope can be reattached without copying or modifying originals.</p></div>
+        </section>
+        <div class="scope-actions">
+          <section class="context-preview" aria-label="Input context preview">
+            <h3>Input context · before processing</h3>
+            <ul id="context-preview-items" class="context-preview-items" aria-live="polite"></ul>
+            <p class="small">Earlier saved messages provide bounded background context, not instructions. Only checked source originals enter source inspection. This is a scope preview, not a semantic summary.</p>
+          </section>
+          <label for="requested-operation" class="small"><strong>Requested operation</strong></label>
+          <select id="requested-operation" aria-label="Requested System operation">
+            <option value="auto_generate">Prepare / generate from selected sources</option>
+            <option value="inspect_sources">Inspect selected sources only · no AI model</option>
+            <option value="summarize">Summarize selected sources · configured model required</option>
+          </select>
+          <p class="small"><strong>Processing objective (latest System message)</strong></p>
+          <p id="processing-objective" class="small" aria-live="polite">Send a System message to set the objective.</p>
+          <button id="start-button" type="button" disabled>Start processing</button><p class="small">Start uses the shown objective and selected original versions. Draft changes are not included.</p></div>
+        <section class="result-summary" aria-live="polite"><h3>Latest operation</h3><p id="job-summary" class="small">No operation accepted.</p><button id="open-result" type="button" class="secondary" hidden>Open result</button></section>
+        <section id="improvement-loop" class="improvement-loop" aria-label="Improvement loop" hidden>
+          <div class="improvement-heading"><h3>Improvement loop</h3><p id="improvement-job-id" class="small" aria-live="polite">No job selected.</p></div>
+          <details class="improvement-section" id="improvement-review-section">
+            <summary>Job review</summary>
+            <form id="improvement-review-form">
+              <fieldset>
+                <legend class="small">Decision</legend>
+                <label><input type="radio" name="improvement-review-decision" value="observed_defect" checked /> Observed defect</label>
+                <label><input type="radio" name="improvement-review-decision" value="reviewer_expectation" /> Reviewer expectation</label>
+                <label><input type="radio" name="improvement-review-decision" value="potential_defect" /> Potential defect</label>
+                <label><input type="radio" name="improvement-review-decision" value="unresolved_decision" /> Unresolved product decision</label>
+              </fieldset>
+              <label for="improvement-review-required" class="small">Required (what the output should have had)</label>
+              <textarea id="improvement-review-required" rows="2" maxlength="4000"></textarea>
+              <label for="improvement-review-prohibited" class="small">Prohibited (what the output must not claim)</label>
+              <textarea id="improvement-review-prohibited" rows="2" maxlength="4000"></textarea>
+              <label for="improvement-review-reason" class="small">Reason</label>
+              <textarea id="improvement-review-reason" rows="2" maxlength="4000"></textarea>
+              <label for="improvement-review-limitations" class="small">Known limitations</label>
+              <textarea id="improvement-review-limitations" rows="2" maxlength="4000"></textarea>
+              <div class="improvement-actions">
+                <button id="improvement-review-save" type="submit">Save review</button>
+                <span id="improvement-review-state" class="small" role="status" aria-live="polite">No review recorded.</span>
+              </div>
+            </form>
+          </details>
+          <details class="improvement-section" id="improvement-eval-section">
+            <summary>Evaluations</summary>
+            <ol id="improvement-eval-list" class="improvement-list"></ol>
+            <form id="improvement-eval-form">
+              <label for="improvement-eval-kind" class="small">Criterion kind</label>
+              <select id="improvement-eval-kind">
+                <option value="contains">contains</option>
+                <option value="contains_ci">contains (case-insensitive)</option>
+                <option value="absent">absent</option>
+                <option value="has_source_id">has_source_id</option>
+                <option value="max_length">max_length</option>
+                <option value="quality_outcome">quality_outcome</option>
+              </select>
+              <label for="improvement-eval-value" class="small">Value</label>
+              <input id="improvement-eval-value" type="text" maxlength="2000" />
+              <div class="improvement-actions">
+                <button id="improvement-eval-create" type="submit" class="secondary">Propose evaluation</button>
+              </div>
+            </form>
+          </details>
+          <details class="improvement-section" id="improvement-proposal-section">
+            <summary>Improvement proposals</summary>
+            <ol id="improvement-proposal-list" class="improvement-list"></ol>
+            <form id="improvement-proposal-form">
+              <label for="improvement-proposal-issue" class="small">Issue (one sentence)</label>
+              <input id="improvement-proposal-issue" type="text" maxlength="1000" required />
+              <label for="improvement-proposal-area" class="small">Affected responsibility</label>
+              <input id="improvement-proposal-area" type="text" maxlength="160" required />
+              <label for="improvement-proposal-current" class="small">Current behaviour</label>
+              <textarea id="improvement-proposal-current" rows="2" maxlength="4000"></textarea>
+              <label for="improvement-proposal-required" class="small">Required behaviour</label>
+              <textarea id="improvement-proposal-required" rows="2" maxlength="4000"></textarea>
+              <label for="improvement-proposal-correction" class="small">Proposed correction</label>
+              <textarea id="improvement-proposal-correction" rows="2" maxlength="4000"></textarea>
+              <div class="improvement-actions">
+                <button id="improvement-proposal-create" type="submit" class="secondary">Create proposal</button>
+              </div>
+            </form>
+          </details>
+          <details class="improvement-section" id="improvement-recurring-section">
+            <summary>Recurring defects</summary>
+            <p id="improvement-recurring-summary" class="small" aria-live="polite">No recurring defects detected.</p>
+            <ol id="improvement-recurring-list" class="improvement-list"></ol>
+          </details>
+        </section>
+                <section id="run-history" class="run-history" aria-label="Content transformation run history">
+          <div class="run-history-heading"><h3>Run history</h3><div class="run-history-actions"><button id="run-history-export" class="secondary" type="button">Export CSV</button><button id="run-history-refresh" class="secondary" type="button">Refresh</button></div></div>
+          <div class="run-history-filters">
+            <div><label for="run-history-search">Search transformations</label>
+              <input id="run-history-search" type="search" maxlength="120" autocomplete="off" placeholder="Job ID, objective, source, output…" /></div>
+            <div><label for="run-history-status">Status</label>
+              <select id="run-history-status"><option value="">All statuses</option>
+                <option value="queued">Queued</option><option value="running">Running</option>
+                <option value="completed">Completed</option><option value="failed">Failed</option>
+                <option value="blocked">Unable to process</option></select></div>
+          </div>
+          <p id="run-history-count" class="small" role="status" aria-live="polite">Loading recorded runs…</p>
+          <ol id="run-history-list" class="run-history-list"></ol>
+          <div class="run-history-pages"><button id="run-history-previous" type="button" class="secondary" disabled>Previous</button>
+            <span id="run-history-page" class="meta">Page 1</span>
+            <button id="run-history-next" type="button" class="secondary" disabled>Next</button></div>
+        </section>
+                <section id="prompt-workspace" class="prompt-workspace" aria-label="Prompt Workspace">
+          <div class="prompt-heading">
+            <h3>Prompt workspace</h3>
+            <button id="prompt-new" class="secondary" type="button">New prompt</button>
+          </div>
+          <div class="prompt-select-row">
+            <label for="prompt-select" class="small"><strong>Prompt</strong></label>
+            <select id="prompt-select" aria-label="Selected prompt"></select>
+          </div>
+          <div id="prompt-detail" hidden>
+            <p class="small" id="prompt-latest">No published version yet.</p>
+            <label for="prompt-draft-content" class="small"><strong>Draft content</strong></label>
+            <textarea id="prompt-draft-content" spellcheck="false" rows="6" placeholder="Instructions. Use ${name} to inject a declared variable."></textarea>
+            <label for="prompt-variables" class="small"><strong>Variables (JSON array)</strong></label>
+            <textarea id="prompt-variables" spellcheck="false" rows="3" placeholder='[{"name":"source"}]'></textarea>
+            <p id="prompt-draft-state" class="small" aria-live="polite">Draft state unknown.</p>
+            <div class="prompt-actions">
+              <button id="prompt-save-draft" type="button" class="secondary" disabled>Save draft</button>
+              <button id="prompt-publish" type="button" disabled>Publish version</button>
+              <button id="prompt-optimize" type="button" class="secondary">Optimize (advisory)</button>
+            </div>
+            <details class="prompt-versions">
+              <summary>Version history</summary>
+              <ol id="prompt-versions-list"></ol>
+              <div class="prompt-compare-row">
+                <label for="prompt-compare-left" class="small">Compare</label>
+                <input id="prompt-compare-left" type="text" placeholder="v1" />
+                <span class="small">vs</span>
+                <input id="prompt-compare-right" type="text" placeholder="v2" />
+                <button id="prompt-compare-go" type="button" class="secondary">Compare</button>
+              </div>
+              <pre id="prompt-compare-output" class="small" aria-live="polite"></pre>
+            </details>
+            <details class="prompt-eval">
+              <summary>Structural evaluation</summary>
+              <label for="prompt-eval-criteria" class="small">Criteria JSON</label>
+              <textarea id="prompt-eval-criteria" spellcheck="false" rows="3" placeholder='[{"kind":"contains","value":"Summarize"}]'></textarea>
+              <button id="prompt-eval-run" type="button" class="secondary">Queue + run</button>
+              <pre id="prompt-eval-output" class="small"></pre>
+            </details>
+            <details class="prompt-opt">
+              <summary>Optimization proposals</summary>
+              <ol id="prompt-opt-list"></ol>
+            </details>
+          </div>
+          <p class="small">Published versions are immutable. Admitted jobs freeze the exact version they ran against. Prompt publication is separate from Apply.</p>
+        </section>
+        <section id="background-summary" class="background-summary" aria-label="System Background evaluation">
+          <div class="background-heading"><h3>System Background</h3><span id="background-state" class="meta">No recorded evaluations</span></div>
+          <p class="small">Read-only evaluation of committed job evidence. Does not control active work or production policies.</p>
+          <ol id="background-history" class="background-history" aria-live="polite"></ol>
+          <p id="background-patterns" class="small" aria-live="polite">No verified recurring patterns.</p>
+        </section>
+      </section>
+
+      <section id="detail-panel" class="detail-panel" aria-label="Editor and review">
+        <div id="review-view" class="detail-view">
+          <div class="panel-heading"><div><p class="eyebrow">Source inspection</p><h2>Editor / Review</h2></div><span id="review-label" class="meta">No file open</span></div>
+          <div id="review-empty" class="detail-empty"><div class="placeholder-symbol" aria-hidden="true">⌘</div><h3>Select a source</h3><p>Click a file name to review it. Use its checkbox only to select it for processing.</p></div>
+          <div id="editor-wrapper" class="editor-wrapper" hidden>
+            <div class="editor-info"><span id="editor-file"></span><span id="editor-integrity" class="meta"></span></div>
+            <label for="editor-input" class="visually-hidden">Editable draft based on original source</label>
+            <textarea id="editor-input" spellcheck="false"></textarea>
+            <div class="editor-actions"><span id="draft-state" class="small">Original source · unchanged</span><button id="save-draft" type="button" class="secondary" disabled>Save draft</button></div>
+            <p class="small">Saving a draft never changes the original source. Apply is a separate authorization boundary.</p>
+          </div>
+          <div id="artifact-view" hidden>
+            <div id="artifact-meta" class="artifact-meta"></div>
+            <div class="artifact-tools"><button id="artifact-export" class="secondary" type="button">Export retained artifact (.json)</button><button id="summary-export" class="secondary" type="button" hidden>Download summary (output.json)</button></div>
+            <section id="apply-controls" class="apply-controls" aria-label="Authorized Apply" hidden>
+              <h3>Apply the reviewed artifact</h3>
+              <p class="small">Apply creates or replaces a managed output under the OneShot data directory. It never changes imported source originals. Confirm the destination and review the artifact before authorizing a write.</p>
+              <label for="apply-destination">Managed output destination</label>
+              <input id="apply-destination" maxlength="240" placeholder="review/result.md" autocomplete="off" />
+              <button id="apply-prepare" type="button" class="secondary">Review Apply</button>
+              <p id="apply-status" class="small" role="status" aria-live="polite"></p>
+              <pre id="apply-diff" class="presend-text" hidden aria-label="Final applied diff"></pre>
+            </section>
+            <pre id="artifact-content"></pre>
+            <section class="evidence-panel" aria-label="Original evidence for this result">
+              <h3>Sources used by this result</h3>
+              <p class="small">Opens retained original bytes from the recorded job snapshot, not the current selected scope. Passage navigation appears only when a location was recorded.</p>
+              <ul id="artifact-evidence-list" class="evidence-list"></ul>
+              <p id="evidence-status" class="small" role="status" aria-live="polite"></p>
+              <pre id="evidence-preview" class="presend-text" hidden></pre>
+            </section>
+          </div>
+        </div>
+        <div id="process-view" class="detail-view" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">Actual execution events</p><h2>Process Display</h2></div><button id="process-review" class="secondary" type="button">Review source</button></div>
+          <p id="process-job" class="small"></p>
+          <div class="process-facts" aria-label="Observed run facts"><span id="process-coverage">Source coverage: awaiting events</span><span id="process-last-update">Last confirmed update: not received</span><span id="process-connection-status" role="status">Event stream connecting</span></div>
+          <div id="process-nodes" class="nodes" aria-live="polite"></div>
+          <div class="event-heading">Event activity</div>
+          <ol id="process-events" class="event-list" aria-live="polite"></ol>
+          <p class="small">Only events returned by the backend are displayed. No estimated percentages or simulated progress.</p>
+        </div>
+      </section>
+    </div>
+    <dialog id="start-review-dialog" class="presend-dialog" aria-labelledby="start-review-title">
+      <h2 id="start-review-title">Review before processing</h2>
+      <p class="small">Confirm the persisted objective and exact selected original versions. Drafts, unfetched references, and unsent messages are not admitted.</p>
+      <h3>Saved System objective</h3>
+      <pre id="start-review-objective" class="presend-text"></pre>
+      <h3>Selected originals</h3>
+      <ul id="start-review-sources" class="evidence-list"></ul>
+      <p id="start-review-status" role="status" aria-live="polite"></p>
+      <div class="presend-actions"><button type="button" class="secondary" id="start-review-cancel">Cancel</button><button type="button" id="start-review-confirm">Confirm and start</button></div>
+    </dialog>
+    <dialog id="presend-dialog" class="presend-dialog" aria-labelledby="presend-title" aria-describedby="presend-description">
+        <div class="presend-heading"><h2 id="presend-title">Review context before sending</h2><span class="meta">System Chat</span></div>
+        <p id="presend-description" class="small">The draft below copies explicitly labeled sections only. It is not a model-generated or verified semantic summary. Your original message is always preserved verbatim.</p>
+        <label for="presend-summary">Optional structured summary (editable)</label>
+        <textarea id="presend-summary" rows="5" maxlength="12000" aria-describedby="presend-summary-help"></textarea>
+        <p id="presend-summary-help" class="small">If empty, the original text alone is sent. Editing this field does not change the original.</p>
+        <h3>Original input (read-only)</h3>
+        <pre id="presend-original" class="presend-text"></pre>
+        <h3>Exact message to submit</h3>
+        <pre id="presend-payload" class="presend-text" aria-live="polite"></pre>
+        <p id="presend-error" role="alert" class="presend-error"></p>
+        <p id="presend-status" role="status" aria-live="polite" class="small"></p>
+        <div class="presend-actions"><button id="presend-cancel" class="secondary" type="button">Cancel</button><button id="presend-approve" type="button">Approve and send</button></div>
+    </dialog>
+    <dialog id="apply-dialog" class="presend-dialog" aria-labelledby="apply-title">
+      <h2 id="apply-title">Confirm managed output Apply</h2>
+      <p id="apply-confirm-details" class="small"></p>
+      <p class="small">The already-reviewed artifact will be written to this exact destination. A baseline hash is checked again before writing; after writing, OneShot reads the result back and verifies the hash.</p>
+      <div class="presend-actions"><button id="apply-cancel" type="button" class="secondary">Cancel</button><button id="apply-confirm" type="button">Confirm Apply</button></div>
+    </dialog>
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+  </div>
+</body>
+</html>

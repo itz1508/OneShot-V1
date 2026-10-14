@@ -1,0 +1,49 @@
+original_path,archive_sha256,bytes,members,markdown_members,markdown_exact_in_v1,oneshot_same,oneshot_different,oneshot_absent_in_v1,nested_archives,oneshot_named
+C:\Users\itz15\Downloads\Benchmark-Console-source-code.zip,7563ae9f6c7f341ed5b9ad3cf31b78b704c67caf61022c0601cebc85c2cf7e9c,320722,39,1,0,0,0,0,0,False
+C:\Users\itz15\Downloads\ChatAgents-source-code.zip,957983f01a7bc280b67e6f2201722a9d4e8d4578a4a7b63fb50c00ad17396679,601444,68,2,0,0,0,0,0,False
+C:\Users\itz15\Downloads\deep-agent-todo-list.zip,407b60dad7bde4d7417d82cdbc035a37fca04f2702bab218e88d3283c0dcaa39,29248,38,1,0,0,0,0,0,False
+C:\Users\itz15\Downloads\evaluation-midware.zip,a2dbc983831ec7e1e1acf64eb276cf5417ec18cd89766386e8efc0d93ae1e993,44919,27,3,0,0,0,0,0,False
+C:\Users\itz15\Downloads\IDE Researcher\oneshot-researcher-corrected-reviewed-build.zip,b2222a8d57ae7f9ed7fdc0cb09169820b1e35c043e2f6154d25aa783575c40df,28140,3,0,0,0,0,0,0,True
+C:\Users\itz15\Downloads\IDE Researcher\OneShot_IDE_Next16_Production_Architecture.zip,4821cd3092225b3a60e666941f3c1c83c765138a64e8216b50a3be7299136b3c,102315,53,5,0,0,0,0,0,True
+C:\Users\itz15\Downloads\Master Design\oneshot-claude-need-correction.zip,56c11074de798086e264f0efcd46a9e565d93776cf4b061353fbbcddcf07419e,57058,1,0,0,0,0,0,0,True
+C:\Users\itz15\Downloads\Master Design\oneshot_researcher_reference.zip,32a5def08925817ef94cbb0a625ce3fed4a96e7811be8a6a447dd9534955cf9f,16060,3,1,0,0,0,0,0,True
+C:\Users\itz15\Downloads\NativeAI\OneShot-source-code.zip,8cb80a23b93dbb2a33ce5fe25111757f0ee0bb75b84670122173106dfc8e4211,769999,66,4,0,0,0,0,0,True
+C:\Users\itz15\Downloads\New-Project-source-code.zip,d24e30f979d91e40c876f52e820e085e04e9caca7645f29c44d38ef9631c0b28,347003,28,0,0,0,0,0,0,False
+C:\Users\itz15\Downloads\Oi89QdYqplq1.zip,c74cf2597c87b23b12321b669753faf81a241195634ff6d4c414302c23713c0f,11935,12,2,0,0,0,0,0,False
+C:\Users\itz15\Downloads\OneShot-Research-source-.zip,60f20f4641ee0e72b16933ef7cc8bab6d59c2dc3899baed06d4b544471182c83,257856,43,0,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot-system-Workspace-source-code.zip,f31dbebc7b8fbd080b71f2bc50f7574c9db2ce8f22c98374a0d2995ac7932f6f,214457,21,0,0,0,0,0,0,True
+C:\Users\itz15\Downloads\oneshot1-workflow.zip,9d25f8aff4318cb3e929e58d051fc7edd98ebc7d55fe621d4ca93418b7cf75a7,27729,8,8,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Active_Project_Integrated_Fixes_2026-10-10.zip,168165595f48ed368cb3ade255f922fad9e1d15b5a651bf2a730a01a82c85f90,184169,94,9,7,58,36,0,0,True
+C:\Users\itz15\Downloads\OneShot_Active_Scoped_Gap_Fix_NOT_VALID_2026-10-11.zip,bfe7bae0c31a10324cab37e4ac8a5d8cc3c9a57306d2102e839bd07a4952cf38,229625,131,15,7,57,37,17,0,True
+C:\Users\itz15\Downloads\OneShot_Audited_Integrated_Candidate_NOT_VALID_2026-10-10.zip,63dcef160414de3077607d1a7afcceb47c46d7907d310d35d26483eaea006c5e,167690,91,9,6,51,40,0,0,True
+C:\Users\itz15\Downloads\OneShot_Canonical_Workflow_Package.zip,2ce1d3208c60f68f668597c91fc00c686677b674395f002fabd6d84ec178267d,47517,67,5,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Chat_Archive_Accessible_2026-10-08.zip,7772ad288f38b262eebf7aecf3287a08915642e2b6b4b36b1908157a3a49f3c2,18012842,14,3,0,0,0,0,2,True
+C:\Users\itz15\Downloads\OneShot_Chat_Export_Accessible_2026-10-09.zip,bead5e4f6384acda153548b62aca610886f34d8f4303673f791a50e3dc190831,43401330,61,2,0,0,0,0,3,True
+C:\Users\itz15\Downloads\OneShot_Complete_System_Audit_and_Corrected_Spec_2026-10-10.zip,b68edc1f4bc9173aaf074e54c4b2466f51fbf110421c70c3919df2102b4afae7,19018,3,3,0,0,0,0,0,True
+C:\Users\itz15\Downloads\oneshot_e2e-main.zip,ceb004776b2b1c91624ca0c020e88d84921ce2766c136016d6c0a06d1cc2f97c,7961795,415,43,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_End_to_End_Design_and_Builder_Handoff_vNext_2026-10-10.zip,476c6e0fe51e2bf6d50bec4c30941dbb4451dd299d34c97fa3b2202c53a8ae2f,23157,4,4,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Final_Intent_Audit.zip,0b31e32726e889dd6b37534a1b41a83362b161d90ad513bff8553a2a05845425,81082,4,2,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Gap_Reviewed_Rebuild_2026-10-09.zip,370f3776bf42c553a5f7787969956ba6d896e9eef7e1b1a24f864cabfbc69745,64828,54,3,0,23,31,0,0,True
+C:\Users\itz15\Downloads\OneShot_Hackathon_Cloud_Deployment_Handoff_2026-09-02.zip,ef8bbda13ef47ef773713b85084d9f98f57a1d3e3d64a4e7cb1b773f2d6c2588,30811,24,11,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Hackathon_Gemma_Handoff_2026-09-02.zip,5862ceb825950b9262e17df1f45d58b0ea1ccf1ae5a60eb26337231c3a926054,14469,13,8,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Hackathon_Local_ADC_Deployment_2026-09-02.zip,21278daac6cda8550dc0d05a0f6105fe35688fdfdddd44c7bf9b8ea8ca8df03c,38708,32,13,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Init_Skill_Corrected.zip,26908cfaa4de1f5b58b6e3f1073153f0762f020cf140371afa4cecd295a13376,30828,5,1,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Init_Skill_Corrected_v2.zip,8005047f576e311b940a4bd84f80f2e2131069216d357df2f20168a2b6377f90,32917,5,1,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Integrated_MultiModel_Candidate_2026-10-10.zip,a7e8064ef8d820aa48c87ca710a36ad6dc1ad2db24f5e5f5fd26dace469b9e28,161906,90,8,6,48,42,0,0,True
+C:\Users\itz15\Downloads\OneShot_MarketGap_Corrected_Source_2026-10-10.zip,cadc2425a7743a19259aacc3e5436155f51b365eb6b31435dd8e84bad5f14416,146026,86,7,4,43,43,0,0,True
+C:\Users\itz15\Downloads\OneShot_Production_E2E.zip,2bf2e094c9981fa92fe2246d2d9223f9398983a82a4939a629c46aa4a7b81b8b,114740,155,9,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Production_E2E_ADK_Gemma2.zip,7f6e3c89420c7263c3b929c2cb5905658de5291580c588f2d7221bc1ca595b21,4884033,199,11,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Production_E2E_Fixed.zip,79f990dc22621801f850369eaa1a90e8c2fae34e64b535183a00b3cb0d5368b1,4851776,177,10,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Production_E2E_v1.3.0 (1).zip,af0397198d6c69bd20f42279b016df95d7ee861189e75570063a1774c37afe16,4930884,244,14,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Production_E2E_v1.3.0.zip,af0397198d6c69bd20f42279b016df95d7ee861189e75570063a1774c37afe16,4930884,244,14,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Ready_To_Build_Workflow_Package_v1.zip,3d06bf2a1b091937d0f46c2b3d6a9db7f5cb4d52522949c66122410a703f01c3,52912,42,40,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_Run_History_Candidate_2026-10-11.zip,11639795011106efd52f92749552edeaa4aba7ce488bda3ed9186793b790028c,196345,98,10,6,57,38,2,0,True
+C:\Users\itz15\Downloads\OneShot_Single_Builder_Package_System_WinML_2026-10-10.zip,11e6bdca9ee1f2e679c7558ed1a47f099a493d34f337a0ba17c95370e327b639,214430,11,8,0,0,0,0,1,True
+C:\Users\itz15\Downloads\OneShot_System_Generate_Stage_Corrected_2026-10-10.zip,a72eaa09f23c026d34da90abf3245146a218cb15a48638d5fde3d2aab630abf1,105950,69,6,2,30,38,1,0,True
+C:\Users\itz15\Downloads\OneShot_System_Hardening_Proposals_2026-10-10.zip,7fba1c227712f8906107ab1959b1c5ee297a3a15c79b121bfa6fe874b1f790df,19515,3,3,0,0,0,0,0,True
+C:\Users\itz15\Downloads\OneShot_System_Working_Build_2026-10-10.zip,885a6ecc5ea22ec422b708c9e090c6e14036837f05b3556fea98c85543fbd935,128523,78,7,4,36,42,0,0,True
+C:\Users\itz15\Downloads\researcher-analysis.zip,773f7d388cdbf68216e276497178e2a2e812facf5db9bb2764d53c1f35baff29,10824,12,11,0,0,0,0,0,False
+C:\Users\itz15\Downloads\RSM\rsm-v7.1-workspace.zip,1deb6a87ed769f184a68b1dd9cc450282083742495ab9d4788469a701268afb4,1032034,366,42,0,0,0,0,0,False
+C:\Users\itz15\Downloads\RSM-Rebuild\RSM-V6.2.zip,bea9970a0c8badff48c6a62c482e00dd0602335fa9328eade061b4d3b71bbbf6,968627,355,40,0,0,0,0,0,False
+C:\Users\itz15\Downloads\rsm-v6.1-webbuilt.zip,10c5df79d45fe75c8c635378c88d5cc1cc64d3ddba611e0380a03a2f97368d78,6101987,571,57,0,0,0,0,2,False
+C:\Users\itz15\Downloads\v3.zip,819234fae5e9742d13f54c2752c2af45a9f803e5bda682c5706af9d0134181da,90727,68,7,0,0,0,0,0,False

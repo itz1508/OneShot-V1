@@ -1,0 +1,12 @@
+{
+  "name": "oneshot-layout-concepts-e2e",
+  "private": true,
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:list": "playwright test --list",
+    "capture:screenshots": "node tests/capture-screenshots.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0"
+  }
+}

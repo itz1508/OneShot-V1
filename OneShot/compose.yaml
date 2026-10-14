@@ -1,0 +1,38 @@
+services:
+  oneshot:
+    build: .
+    ports:
+      - "127.0.0.1:8787:8787"
+    environment:
+      ONESHOT_API_TOKEN: ${ONESHOT_API_TOKEN:?Set server API token}
+      ONESHOT_BROWSER_PASSWORD: ${ONESHOT_BROWSER_PASSWORD:?Set operator sign-in password}
+      ONESHOT_DATA_DIR: /data
+      ONESHOT_PROVIDER: ${ONESHOT_PROVIDER:-evidence}
+      ONESHOT_MODEL_ENDPOINT: ${ONESHOT_MODEL_ENDPOINT:-}
+      ONESHOT_MODEL_NAME: ${ONESHOT_MODEL_NAME:-}
+      ONESHOT_MODEL_TOKEN: ${ONESHOT_MODEL_TOKEN:-}
+      ONESHOT_AGENT_OPENAI_TOKEN: ${ONESHOT_AGENT_OPENAI_TOKEN:-}
+      ONESHOT_AGENT_OPENAI_MODEL: ${ONESHOT_AGENT_OPENAI_MODEL:-}
+      ONESHOT_AGENT_GEMINI_TOKEN: ${ONESHOT_AGENT_GEMINI_TOKEN:-}
+      ONESHOT_AGENT_GEMINI_MODEL: ${ONESHOT_AGENT_GEMINI_MODEL:-}
+      ONESHOT_AGENT_OLLAMA_MODEL: ${ONESHOT_AGENT_OLLAMA_MODEL:-}
+      ONESHOT_AGENT_OLLAMA_ENDPOINT: ${ONESHOT_AGENT_OLLAMA_ENDPOINT:-}
+      ONESHOT_SYSTEM_BACKGROUND: ${ONESHOT_SYSTEM_BACKGROUND:-true}
+      ONESHOT_FRONTEND_DIST: /app/frontend/dist
+    volumes:
+      - oneshot_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/ready', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+volumes:
+  oneshot_data: {}

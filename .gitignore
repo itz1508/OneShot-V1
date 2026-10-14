@@ -1,0 +1,11 @@
+# Local test / temp output (pytest, caches, venvs) — never commit
+.tmp/
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+node_modules/
+*.egg-info/

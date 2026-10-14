@@ -1,0 +1,12 @@
+{
+  "name": "oneshot-frontend",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check app.js && node --check api/client.js && node --check workspace.js && node --check presend.js && node --check lifecycle.js && node --check build.mjs"
+  }
+}

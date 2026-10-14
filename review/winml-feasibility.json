@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-10-13T01:22:59Z",
+  "host": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "system": "Windows",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "python_version": "3.11.15",
+    "python_executable": "D:\\OneShot-V1\\OneShot\\.venv\\Scripts\\python.exe",
+    "python_architecture": "64bit",
+    "is_windows": true
+  },
+  "policy": {
+    "winml_in_main_pyproject": false,
+    "reason": "WinML CLI is a Windows-x64 preview tool; keep separate env per M-01.",
+    "disabled_commands": [
+      "run",
+      "serve"
+    ]
+  },
+  "checks": [
+    {
+      "check": "winml_binary_discovery",
+      "status": "TOOL_MISSING",
+      "resolved": null,
+      "note": "Pass --winml <path> or set ONESHOT_WINML_BIN to a Windows x64 venv binary; this probe does NOT install."
+    },
+    {
+      "check": "winml_sys_json",
+      "status": "PREREQUISITE_MISSING",
+      "reason": "winml binary not available on this host",
+      "next_step": "Create a separate Windows x64 Python 3.11 environment per plans/OneShot_Machine_Systems_Development_Refactor_Plan.md M-01, install `winml-cli` with a reviewed pinned version, then rerun --winml <path>."
+    }
+  ],
+  "m00_consumer_decision": {
+    "status": "UNRESOLVED",
+    "reason": "No OneShot workflow consumer requires Windows-local ML inference today. Core WP-00 through WP-09 does not depend on this track.",
+    "options": [
+      {
+        "id": "A",
+        "label": "Developer-only model workshop (export/analyze/perf/eval)",
+        "oneshot_contract_change": "none; artifacts flow through separate Windows env"
+      },
+      {
+        "id": "B",
+        "label": "Windows-local inference consumed by a OneShot source operation",
+        "oneshot_contract_change": "new typed adapter + Pydantic request/response"
+      }
+    ]
+  }
+}

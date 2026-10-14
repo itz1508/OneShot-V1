@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OneShot | Two-pane UI review</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css?v=20261013e">
+  <script defer src="./app.js?v=20261013e"></script>
+</head>
+<body>
+  <a class="skip-link" href="#system-card">Skip to System Chat</a>
+  <header class="gallery-head">
+    <div class="gallery-identity"><span class="gallery-kicker">ONESHOT / DESIGN REVIEW</span><h1>Two conversations. One System result.</h1></div>
+    <p>One proposed workspace with Agent and System side by side. Sources and review open inside System Chat.</p>
+  </header>
+
+  <div class="preview-controls" aria-label="Preview states">
+    <span class="preview-label">PREVIEW STATE</span>
+    <button id="process-toggle" type="button" aria-controls="detail-stage">Show processing</button>
+    <div class="stage-choice" role="group" aria-label="Illustrative conversation moment">
+      <button type="button" data-scan-stage-choice="prompt" aria-pressed="false">Prompt</button>
+      <button type="button" data-scan-stage-choice="processing" aria-pressed="false">Processing</button>
+      <button type="button" data-scan-stage-choice="result" aria-pressed="true">Result</button>
+    </div>
+    <label class="process-state-field" for="process-state">Process preview
+      <select id="process-state" aria-label="Process preview state">
+        <option value="waiting">Waiting for events</option>
+        <option value="reconnecting">Connection interrupted</option>
+        <option value="blocked">Blocked job</option>
+        <option value="completed">Completed job</option>
+      </select>
+    </label>
+    <span id="concept-caption" class="concept-caption">Illustrative result. Select a source to inspect it.</span>
+  </div>
+
+  <main id="preview" class="preview" data-owner="system" data-right="closed" data-detail="closed" data-mobile-zone="system" data-mobile-subview="list" data-review-focus="off" data-scan-stage="result" data-result-tab="preview">
+    <header class="product-head">
+      <div class="product-mark" aria-hidden="true">O<span>/</span>S</div>
+      <div class="product-heading"><strong>OneShot</strong><span>Scanner conversation</span></div>
+      <span class="product-spacer"></span>
+      <span class="product-status"><i aria-hidden="true"></i> Layout preview / sample data</span>
+      <button type="button" class="product-menu" aria-label="Sample menu" disabled>Menu</button>
+    </header>
+
+    <div class="mobile-zone-nav" role="group" aria-label="Workspace view">
+      <button type="button" data-mobile-zone-choice="agent" aria-pressed="false">Agent</button>
+      <button type="button" data-mobile-zone-choice="system" aria-pressed="true">System</button>
+    </div>
+
+    <div class="app-shell">
+      <aside class="conversation-rail" aria-label="Left conversation rail">
+        <span class="rail-word">CHATS</span>
+        <button id="rail-agent-toggle" type="button" class="rail-tile" aria-label="Make Agent Chat active" aria-controls="agent-card" aria-pressed="false" title="Agent Chat">A</button>
+        <button id="rail-system-toggle" type="button" class="rail-tile is-selected" aria-label="Make System Chat active" aria-controls="system-card" aria-pressed="true" title="System Chat">S</button>
+        <span class="rail-bottom">01 / 02</span>
+      </aside>
+
+      <section id="agent-card" class="agent-card card" aria-label="Agent Chat" tabindex="-1">
+        <div class="card-heading"><span class="eyebrow">01 / OPTIONAL ASSISTANT</span><h2>Agent Chat</h2><span id="agent-access" class="access-pill">Agent visible / layout preview</span></div>
+        <div class="chat-flow agent-flow">
+          <div class="chat-day">TODAY</div>
+          <article class="message outgoing"><span class="message-author">YOU</span><p>Help me review the source notes before I decide what to process.</p></article>
+          <article class="message incoming"><span class="message-author">AGENT</span><p>I can discuss the notes. System processing still requires your separate Start action.</p></article>
+        </div>
+        <div class="agent-composer"><label for="agent-composer-sample">Agent message</label><div class="agent-composer-bar"><input id="agent-composer-sample" type="text" placeholder="Message Agent..." readonly aria-label="Agent message input, layout preview only"><button type="button" disabled title="No Agent backend connected in this layout study">Send</button></div><small>Illustrative conversation. No Agent backend is connected.</small></div>
+      </section>
+
+      <section id="system-card" class="system-card card" aria-label="System Chat" tabindex="-1">
+        <div class="card-heading system-heading"><div><span class="eyebrow">02 / MAIN CONVERSATION</span><h2>System Chat</h2><span id="system-access" class="access-pill">System active / layout preview</span></div><button id="mobile-sources-toggle" type="button" aria-controls="summary-panel" aria-expanded="false">Sources</button></div>
+        <div class="system-body">
+          <div class="system-conversation">
+            <div class="chat-flow system-flow">
+              <div class="chat-day">SCANNER / ILLUSTRATIVE EXAMPLE</div>
+              <article class="message outgoing objective-message"><span class="message-author">YOU / REQUEST</span><p>Consolidate the related OneShot notes into one Markdown context. Keep changes and uncertainty visible.</p><div class="message-attachments" aria-label="Example attached sources"><span>context.txt</span><span>brief.md</span><span>screen.png</span><span>reference.url</span></div></article>
+              <details id="scan-card" class="scan-card"><summary><span class="scan-mark" aria-hidden="true">05</span><span><strong>Scanner processing</strong><small>Five stages / sample state</small></span><span class="scan-expand">Details</span></summary><ol class="scan-steps"><li><b>Scan</b><span>Identify available sources</span></li><li><b>Read</b><span>Extract supported contents</span></li><li><b>Structure</b><span>Preserve content boundaries</span></li><li><b>Consolidate</b><span>Relate evidence and uncertainty</span></li><li><b>Generate</b><span>Compose one Markdown result</span></li></ol><p class="scan-limitation">Illustrative sequence. No backend scan or semantic verification occurred in this preview.</p></details>
+              <article id="markdown-result" class="markdown-result" aria-label="Illustrative Markdown result"><div class="result-head"><div class="result-file-mark" aria-hidden="true">MD</div><div><span class="result-eyebrow">ILLUSTRATIVE ARTIFACT</span><h3>OneShot-Context.md</h3><p>One Markdown result / sample content only</p></div><button id="sample-download" type="button" title="Download illustrative Markdown sample">Download .md</button></div><div class="result-tabs" role="tablist" aria-label="Markdown result detail"><button id="result-preview-tab" type="button" role="tab" data-result-tab="preview" aria-controls="result-preview-panel" aria-selected="true" tabindex="0">Preview</button><button id="result-sources-tab" type="button" role="tab" data-result-tab="sources" aria-controls="result-sources-panel" aria-selected="false" tabindex="-1">Sources</button><button id="result-coverage-tab" type="button" role="tab" data-result-tab="coverage" aria-controls="result-coverage-panel" aria-selected="false" tabindex="-1">Coverage</button></div><div id="result-preview-panel" class="result-panel" role="tabpanel" aria-labelledby="result-preview-tab" tabindex="0"><pre id="result-markdown" class="result-markdown"></pre></div><div id="result-sources-panel" class="result-panel" role="tabpanel" aria-labelledby="result-sources-tab" tabindex="0" hidden><h4>Example inventory</h4><p>context.txt and brief.md are the readable text examples. screen.png needs a vision provider; reference.url has not been fetched.</p><p>No cited source content was processed for this layout study.</p></div><div id="result-coverage-panel" class="result-panel" role="tabpanel" aria-labelledby="result-coverage-tab" tabindex="0" hidden><h4>Coverage and limits</h4><p>No live scan or model run occurred. The Markdown preview demonstrates layout and export only.</p><p>Real coverage must come from persisted System evidence before it can be shown as complete.</p></div></article>
+            </div>
+            <div class="system-composer"><div class="composer-attach-label">Attached examples <span>4</span></div><div class="composer-attach-list" aria-label="Sample composer attachments"><span>context.txt</span><span>brief.md</span><span>screen.png</span><span>reference.url</span></div><div class="composer-bar"><span id="composer-owner">SYSTEM INPUT</span><label class="composer-field" for="composer-sample"><input id="composer-sample" type="text" placeholder="Ask a question or add sources..." aria-label="System message input, layout preview only" readonly></label><button type="button" disabled title="No backend connected in this layout study">Send</button></div></div>
+          </div>
+
+          <aside id="summary-panel" class="summary-panel card" aria-label="System sources and review" tabindex="-1">
+            <div class="summary-heading"><div><span class="eyebrow">SYSTEM / CONTEXTUAL WORKSPACE</span><h2>Sources &amp; Review</h2></div><button id="summary-close" type="button" aria-label="Close System sources and review">Close</button></div>
+            <div class="summary-split">
+              <section class="attachments" aria-label="Attachments">
+                <div class="section-head"><div><span class="section-index">03</span><h3>Attachments</h3></div><button class="icon-action" type="button" disabled title="Illustrative add source">+ Add</button></div>
+                <p class="section-help">Open a source to review it.</p>
+                <label class="source-search"><input id="source-search" type="search" placeholder="Find a source" aria-label="Find a source"></label>
+                <div class="source-scope"><span>Selected and ready</span><strong id="scope-count">2</strong></div>
+                <p id="scope-hint" class="scope-hint" role="status">Select the ready text examples for the illustrative scope.</p>
+                <div class="source-scroll">
+                  <div class="folder-label">Available sources <em id="source-visible">4</em></div>
+                  <div class="source-row" data-source-row="context"><label class="scope-control"><input class="scope-box" type="checkbox" value="context" checked aria-label="Include context.txt in sample scope" aria-describedby="scope-hint"></label><button type="button" class="source-item" data-source="context" aria-controls="detail-stage" aria-expanded="false"><span class="source-icon">TXT</span><span><strong>context.txt</strong><small>Readable original</small></span><span class="source-readiness is-ready">Ready</span><span class="source-chevron" aria-hidden="true">&gt;</span></button></div>
+                  <div class="source-row" data-source-row="brief"><label class="scope-control"><input class="scope-box" type="checkbox" value="brief" checked aria-label="Include brief.md in sample scope" aria-describedby="scope-hint"></label><button type="button" class="source-item" data-source="brief" aria-controls="detail-stage" aria-expanded="false"><span class="source-icon">MD</span><span><strong>brief.md</strong><small>Readable original</small></span><span class="source-readiness is-ready">Ready</span><span class="source-chevron" aria-hidden="true">&gt;</span></button></div>
+                  <div class="source-row" data-source-row="image"><label class="scope-control"><input class="scope-box" type="checkbox" value="image" disabled aria-label="screen.png cannot join sample scope without a vision provider"></label><button type="button" class="source-item" data-source="image" aria-controls="detail-stage" aria-expanded="false"><span class="source-icon">PNG</span><span><strong>screen.png</strong><small>Vision provider unavailable</small></span><span class="source-readiness is-pending">Needs provider</span><span class="source-chevron" aria-hidden="true">&gt;</span></button></div>
+                  <div class="source-row" data-source-row="url"><label class="scope-control"><input class="scope-box" type="checkbox" value="url" disabled aria-label="reference.url cannot join sample scope until fetched"></label><button type="button" class="source-item" data-source="url" aria-controls="detail-stage" aria-expanded="false"><span class="source-icon">URL</span><span><strong>reference.url</strong><small>Reference has not been fetched</small></span><span class="source-readiness is-pending">Unfetched</span><span class="source-chevron" aria-hidden="true">&gt;</span></button></div>
+                  <p id="source-empty" class="source-empty" hidden>No matching source in this sample.</p>
+                </div>
+                <div class="source-actions"><button type="button" disabled title="Layout study only">Import / Send</button><button type="button" disabled title="No backend job in this layout study" aria-label="Start unavailable in layout study">Start</button></div>
+                <div class="prepared"><span class="prepared-kicker">SOURCE READINESS / SAMPLE</span><strong>2 readable originals</strong><p>Inspection findings require a real System job; no semantic summary is claimed.</p><div class="coverage-list"><span>Ready <b>2</b></span><span>Needs provider <b>1</b></span><span>Unfetched <b>1</b></span></div></div>
+              </section>
+
+              <section id="detail-stage" class="detail-stage" aria-label="Context drawer" hidden>
+                <div class="review-view">
+                  <div class="section-head review-section-head"><div><button id="review-back" class="review-back" type="button" aria-label="Back to sources">Back to sources</button><span class="section-index">04</span><h3 id="review-heading" tabindex="-1">Editor / Review</h3></div><div class="review-heading-actions"><button id="review-focus" type="button" class="focus-button" aria-pressed="false">Focus review</button><button id="detail-close" type="button" class="drawer-close" aria-label="Close Editor / Review drawer">Close</button></div></div>
+                  <div class="file-meta"><span id="source-name">context.txt</span><span id="source-status">Text source</span></div>
+                  <div class="review-tabs" role="tablist" aria-label="Source review mode"><button id="read-tab" type="button" role="tab" data-review-tab="read" aria-controls="read-panel" aria-selected="true" tabindex="0">Read</button><button id="edit-tab" type="button" role="tab" data-review-tab="edit" aria-controls="edit-panel" aria-selected="false" tabindex="-1">Edit</button><button id="diff-tab" type="button" role="tab" data-review-tab="diff" aria-controls="diff-panel" aria-selected="false" tabindex="-1">Diff</button><span id="revision-state" class="revision-state" role="status">Original revision</span></div>
+                  <div id="read-panel" class="review-tab-panel" role="tabpanel" aria-labelledby="read-tab"><pre id="source-content" class="source-content" role="region" aria-label="Original source content" tabindex="0"># Context notes</pre></div>
+                  <div id="edit-panel" class="review-tab-panel" role="tabpanel" aria-labelledby="edit-tab" hidden><label class="draft-label" for="source-draft">Sample draft; changes stay in this browser preview</label><textarea id="source-draft" spellcheck="false"></textarea></div>
+                  <div id="diff-panel" class="review-tab-panel" role="tabpanel" aria-labelledby="diff-tab" hidden><div class="diff-grid"><div class="diff-side" role="region" aria-label="Immutable original content" tabindex="0"><strong>Immutable original</strong><pre id="diff-original"></pre></div><div class="diff-side" role="region" aria-label="Current sample draft content" tabindex="0"><strong>Current sample draft</strong><pre id="diff-current"></pre></div></div></div>
+                  <div class="review-actions"><button id="save-draft" type="button" disabled>Save sample draft</button><button id="compare-changes" type="button">Compare changes</button></div>
+                </div>
+                <div class="process-view" hidden>
+                  <div class="section-head"><div><span class="section-index">05</span><h3 id="process-heading" tabindex="-1">Process Display</h3></div><span class="detail-badge">Drawer position</span></div>
+                  <div class="process-status" role="status"><span class="process-pulse" aria-hidden="true"></span><div><strong id="process-status-label">Waiting for committed events</strong><p id="process-status-copy">No job is connected to this layout study.</p></div></div>
+                  <div class="process-events"><div class="process-events-head"><strong>Event layout</strong><span>API event types; no live job</span></div><ul id="process-event-list" class="event-list"></ul></div>
+                  <div class="event-foot">Only real backend events can populate the product Process Display. Finish sample restores the prior review state.</div>
+                </div>
+              </section>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <aside class="context-rail" aria-label="Right context rail"><span class="rail-word">CONTEXT</span><button id="rail-sources-toggle" type="button" class="rail-tile" aria-label="Toggle System sources and review" aria-controls="summary-panel" aria-expanded="false" title="Sources and review">F</button><button id="rail-coverage-open" type="button" class="rail-tile" aria-label="Show result coverage" aria-controls="result-coverage-panel" title="Coverage">C</button><button type="button" class="rail-tile" aria-label="History unavailable in layout study" title="History unavailable" disabled>H</button><span class="rail-bottom">SYSTEM</span></aside>
+    </div>
+  </main>
+
+  <p id="view-announcement" class="sr-only" role="status" aria-live="polite"></p>
+</body>
+</html>

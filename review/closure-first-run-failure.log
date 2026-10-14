@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\OneShot-V1\OneShot\tests\e2e_improvement_loop_closure.py", line 336, in <module>
+    run()
+  File "D:\OneShot-V1\OneShot\tests\e2e_improvement_loop_closure.py", line 126, in run
+    assert 'Reviews:' in txt and 'grouping' in txt, txt
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No recurring defects detected.

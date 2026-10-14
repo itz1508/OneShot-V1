@@ -1,0 +1,209 @@
+{
+  "status": "VALID",
+  "release_ready": true,
+  "product_release_ready": false,
+  "blocked_scenarios": [
+    "P09",
+    "P12-real-model",
+    "I05-real-model"
+  ],
+  "blocked_decisions": [
+    "P11-semantic"
+  ],
+  "realmodel_scenarios": {
+    "P09": "PENDING_REALMODEL_RUNTIME",
+    "P12-real-model": "PENDING_REALMODEL_RUNTIME",
+    "I05-real-model": "PENDING_REALMODEL_RUNTIME"
+  },
+  "realmodel_scenarios_detail": {
+    "P09": {
+      "reason": "ONESHOT_EVIDENCE_HMAC_KEY unset"
+    },
+    "P12-real-model": {
+      "reason": "ONESHOT_EVIDENCE_HMAC_KEY unset"
+    },
+    "I05-real-model": {
+      "reason": "ONESHOT_EVIDENCE_HMAC_KEY unset"
+    }
+  },
+  "product_decisions": {
+    "P11-semantic": "UNRESOLVED"
+  },
+  "product_decisions_detail": {
+    "P11-semantic": {
+      "missing_sentinel": "/tmp/verify-v611/OneShot/docs/product_decisions/P11-semantic.resolved.json"
+    }
+  },
+  "host": {
+    "python": "3.11.17"
+  },
+  "gates": [
+    {
+      "gate": "python311",
+      "status": "OK"
+    },
+    {
+      "gate": "uv",
+      "status": "OK"
+    },
+    {
+      "gate": "node",
+      "status": "OK"
+    },
+    {
+      "gate": "npm",
+      "status": "OK"
+    },
+    {
+      "gate": "reviewed_lockfile",
+      "status": "OK"
+    },
+    {
+      "gate": "locked_python_environment",
+      "status": "OK"
+    },
+    {
+      "gate": "ruff_lint",
+      "status": "OK"
+    },
+    {
+      "gate": "selfcheck",
+      "status": "OK"
+    },
+    {
+      "gate": "python_diagnostics",
+      "status": "OK"
+    },
+    {
+      "gate": "workflow_conformance",
+      "status": "OK"
+    },
+    {
+      "gate": "dockerfile_contract",
+      "status": "OK"
+    },
+    {
+      "gate": "frontend_clean_install",
+      "status": "OK"
+    },
+    {
+      "gate": "frontend_check",
+      "status": "OK"
+    },
+    {
+      "gate": "frontend_tests",
+      "status": "OK"
+    },
+    {
+      "gate": "frontend_build",
+      "status": "OK"
+    },
+    {
+      "gate": "http_integration",
+      "status": "OK"
+    },
+    {
+      "gate": "multi_provider_protocol",
+      "status": "OK"
+    },
+    {
+      "gate": "chromium_install",
+      "status": "OK"
+    },
+    {
+      "gate": "browser_integrated_e2e",
+      "status": "OK"
+    },
+    {
+      "gate": "browser_presend_e2e",
+      "status": "OK"
+    },
+    {
+      "gate": "live_model_local_e2e",
+      "status": "OK"
+    },
+    {
+      "gate": "backup_restore_e2e",
+      "status": "OK"
+    },
+    {
+      "gate": "prompt_workspace_e2e",
+      "status": "OK"
+    },
+    {
+      "gate": "improvement_loop_browser_e2e",
+      "status": "OK"
+    },
+    {
+      "gate": "improvement_loop_closure_browser_e2e",
+      "status": "OK"
+    },
+    {
+      "gate": "docker",
+      "status": "SKIPPED_PREREQUISITE_MISSING",
+      "diagnostic": {
+        "phase": "analyze",
+        "cause_class": "PREREQUISITE_MISSING",
+        "missing_prerequisite": "unspecified",
+        "corrective_action": "Install or configure \u2018the prerequisite\u2019 and rerun the gate.",
+        "details": {
+          "gate": "docker"
+        },
+        "phase_label": "Analyze"
+      },
+      "diagnostic_line": "Analyze \u2014 cause_class=PREREQUISITE_MISSING; missing=unspecified; action=Install or configure \u2018the prerequisite\u2019 and rerun the gate."
+    },
+    {
+      "gate": "docker_compose_config",
+      "status": "SKIPPED_PREREQUISITE_MISSING",
+      "diagnostic": {
+        "phase": "analyze",
+        "cause_class": "PREREQUISITE_MISSING",
+        "missing_prerequisite": "unspecified",
+        "corrective_action": "Install or configure \u2018the prerequisite\u2019 and rerun the gate.",
+        "details": {
+          "gate": "docker_compose_config"
+        },
+        "phase_label": "Analyze"
+      },
+      "diagnostic_line": "Analyze \u2014 cause_class=PREREQUISITE_MISSING; missing=unspecified; action=Install or configure \u2018the prerequisite\u2019 and rerun the gate."
+    },
+    {
+      "gate": "live_model_browser_e2e",
+      "status": "SKIPPED_PREREQUISITE_MISSING",
+      "diagnostic": {
+        "phase": "analyze",
+        "cause_class": "PREREQUISITE_MISSING",
+        "missing_prerequisite": "unspecified",
+        "corrective_action": "Install or configure \u2018the prerequisite\u2019 and rerun the gate.",
+        "details": {
+          "gate": "live_model_browser_e2e"
+        },
+        "phase_label": "Analyze"
+      },
+      "diagnostic_line": "Analyze \u2014 cause_class=PREREQUISITE_MISSING; missing=unspecified; action=Install or configure \u2018the prerequisite\u2019 and rerun the gate."
+    },
+    {
+      "gate": "vision_local_e2e",
+      "status": "SKIPPED_PREREQUISITE_MISSING",
+      "diagnostic": {
+        "phase": "analyze",
+        "cause_class": "PREREQUISITE_MISSING",
+        "missing_prerequisite": "unspecified",
+        "corrective_action": "Install or configure \u2018the prerequisite\u2019 and rerun the gate.",
+        "details": {
+          "gate": "vision_local_e2e"
+        },
+        "phase_label": "Analyze"
+      },
+      "diagnostic_line": "Analyze \u2014 cause_class=PREREQUISITE_MISSING; missing=unspecified; action=Install or configure \u2018the prerequisite\u2019 and rerun the gate."
+    }
+  ],
+  "mandatory_failed_gates": [],
+  "optional_skipped_gates": [
+    "docker",
+    "docker_compose_config",
+    "live_model_browser_e2e",
+    "vision_local_e2e"
+  ]
+}
