@@ -9,3 +9,10 @@ __pycache__/
 .env
 node_modules/
 *.egg-info/
+
+# Generated release / verification artifacts — rebuild via scripts/make_release.py
+dist/
+*.tar.gz
+*-SHA256SUMS.txt
+e2e_transcript*.txt
+verify_release_last_run*.json
